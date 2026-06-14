@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ShopCompare</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo"><i class="fas fa-shopping-basket"></i><span>ShopCompare Admin</span></div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" id="navOverview"><i class="fas fa-tachometer-alt"></i><span>Overview</span></a>
+                <a href="#" class="nav-item" id="navProducts"><i class="fas fa-box"></i><span>Products</span></a>
+                <a href="#" class="nav-item" id="navPrices"><i class="fas fa-tag"></i><span>Prices</span></a>
+                <a href="#" class="nav-item" id="navUsers"><i class="fas fa-users"></i><span>Users</span></a>
+                <a href="#" class="nav-item" id="navReports"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+            </nav>
+            <div class="sidebar-footer"><a href="#" class="nav-item" id="adminLogoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div class="header-welcome"><h2 id="adminWelcomeMessage">Admin Dashboard</h2><p>Manage products, prices, and users</p></div>
+                <div class="header-user"><div class="user-avatar"><i class="fas fa-user-shield"></i></div><div class="user-info"><span id="adminName">Administrator</span><small id="adminEmail">admin@shopcompare.com</small></div></div>
+            </header>
+
+            <!-- Overview View -->
+            <div id="overviewView" class="view active">
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-store"></i></div><div class="stat-info"><h3>3</h3><p>Supermarkets</p></div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-box"></i></div><div class="stat-info"><h3 id="adminProductCount">0</h3><p>Total Products</p></div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-info"><h3 id="adminUserCount">0</h3><p>Registered Users</p></div></div>
+                    <div class="stat-card"><div class="stat-icon"><i class="fas fa-chart-line"></i></div><div class="stat-info"><h3 id="adminComparisonCount">0</h3><p>Price Comparisons</p></div></div>
+                </div>
+                <div class="recent-section"><h3>Recent Activity</h3><div id="recentActivity" class="activity-list"><p>No recent activity</p></div></div>
+            </div>
+
+            <!-- Products View -->
+            <div id="productsView" class="view">
+                <div class="basket-header"><h2>Manage Products</h2><button class="add-product-btn" id="addProductBtn">+ Add New Product</button></div>
+                <div id="productsList" class="products-list"></div>
+            </div>
+
+            <!-- Prices View -->
+            <div id="pricesView" class="view">
+                <div class="basket-header"><h2>Manage Prices</h2><button class="bulk-update-btn" id="bulkUpdateBtn">Bulk Update</button></div>
+                <div id="pricesList" class="prices-list"></div>
+            </div>
+
+            <!-- Users View -->
+            <div id="usersView" class="view">
+                <h2>Manage Users</h2>
+                <div id="usersList" class="users-list"></div>
+            </div>
+
+            <!-- Reports View -->
+            <div id="reportsView" class="view">
+                <h2>Reports</h2>
+                <div class="report-cards">
+                    <div class="report-card"><h4>Most Compared Products</h4><div id="topProducts"></div></div>
+                    <div class="report-card"><h4>Supermarket Popularity</h4><div id="supermarketStats"></div></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <h3 id="productModalTitle">Add Product</h3>
+            <div class="form-group"><label>Product Name</label><input type="text" id="productName" placeholder="e.g., White Rice (1kg)"></div>
+            <div class="form-group"><label>Category</label><input type="text" id="productCategory" placeholder="e.g., Grains"></div>
+            <div class="form-row">
+                <div class="form-group"><label>Naivas Price (KSh)</label><input type="number" id="productNaivas" placeholder="0"></div>
+                <div class="form-group"><label>Carrefour Price (KSh)</label><input type="number" id="productCarrefour" placeholder="0"></div>
+                <div class="form-group"><label>Quickmart Price (KSh)</label><input type="number" id="productQuickmart" placeholder="0"></div>
+            </div>
+            <div class="modal-buttons"><button class="modal-btn" id="saveProductBtn">Save</button><button class="modal-btn cancel" id="cancelProductBtn">Cancel</button></div>
+        </div>
+    </div>
+
+    <!-- Bulk Update Modal -->
+    <div class="modal" id="bulkModal">
+        <div class="modal-content">
+            <h3>Bulk Price Update</h3>
+            <p>Download the template, fill in prices, then upload.</p>
+            <button class="modal-btn" id="downloadTemplateBtn">Download Template</button>
+            <div class="form-group"><label>Upload File</label><input type="file" id="bulkFile" accept=".csv,.xlsx"></div>
+            <div class="modal-buttons"><button class="modal-btn" id="uploadBulkBtn">Upload</button><button class="modal-btn cancel" id="cancelBulkBtn">Cancel</button></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

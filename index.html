@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ShopCompare</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side - Branding Section -->
+        <div class="brand-section">
+            <div class="brand-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>ShopCompare</span>
+                </div>
+                <h1>Compare prices.<br>Save money.<br>Shop smarter.</h1>
+                <p>Compare your shopping basket across Naivas, Carrefour, and Quickmart to find the best deals.</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Compare total basket prices</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Real-time price updates</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Save money on every trip</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form Section -->
+        <div class="form-section">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Login to your account</h2>
+                    <p>Welcome back! Please enter your details.</p>
+                </div>
+
+                <form id="loginForm">
+                    <!-- Email Field -->
+                    <div class="input-group">
+                        <label for="loginEmail">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="loginEmail" name="email" placeholder="Enter your email address" required>
+                        <span class="error-message" id="loginEmailError"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-group">
+                        <label for="loginPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" id="toggleLoginPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="loginPasswordError"></span>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="options-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="login-btn">
+                        LOGIN <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <!-- Admin Login Link -->
+                    <div class="admin-link">
+                        <a href="#" id="adminLoginLink" class="admin-login-link">
+                            <i class="fas fa-user-shield"></i> Login as Administrator
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="social-login">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button type="button" class="social-btn facebook-btn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button type="button" class="social-btn apple-btn">
+                            <i class="fab fa-apple"></i> Apple
+                        </button>
+                    </div>
+
+                    <!-- Register Link -->
+                    <div class="register-link">
+                        <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <p>Logging in...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script src="js/common.js"></script>
+<script src="js/login.js"></script>

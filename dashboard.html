@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dashboard | Supermarket Price Comparison</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-shopping-basket"></i>
+                <span>ShopCompare</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" id="navDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" id="navSearch">
+                    <i class="fas fa-search"></i>
+                    <span>Search Products</span>
+                </a>
+                <a href="#" class="nav-item" id="navBasket">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>My Basket</span>
+                    <span class="badge" id="basketCount">0</span>
+                </a>
+                <a href="#" class="nav-item" id="navCompare">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Compare Prices</span>
+                </a>
+                <a href="#" class="nav-item" id="navHistory">
+                    <i class="fas fa-history"></i>
+                    <span>Saved Baskets</span>
+                </a>
+                <a href="#" class="nav-item" id="navProfile">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-welcome">
+                    <h2 id="welcomeMessage">Welcome back!</h2>
+                    <p>Compare prices and save money on your groceries</p>
+                </div>
+                <div class="header-user">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="user-info">
+                        <span id="userName">User</span>
+                        <small id="userEmail">user@example.com</small>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard View (Default) -->
+            <div id="dashboardView" class="view active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Supermarkets</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="productCount">0</h3>
+                            <p>Products Available</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="basketItemCount">0</h3>
+                            <p>Items in Basket</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-simple"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="savingsAmount">KSh 0</h3>
+                            <p>Potential Savings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-section">
+                    <h3>Popular Products</h3>
+                    <div class="products-grid" id="popularProducts">
+                        <!-- Products will load here -->
+                    </div>
+                </div>
+
+                <div class="tip-section">
+                    <div class="tip-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="tip-content">
+                            <h4>Shopping Tip</h4>
+                            <p>Create a shopping basket with all your items to see which supermarket offers the lowest total price!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search View -->
+            <div id="searchView" class="view">
+                <div class="search-header">
+                    <h2>Search Products</h2>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search for products... (e.g., rice, milk, bread)">
+                        <button id="searchBtn">Search</button>
+                    </div>
+                </div>
+                <div class="search-results" id="searchResults">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+
+            <!-- Basket View -->
+            <div id="basketView" class="view">
+                <div class="basket-header">
+                    <h2>My Shopping Basket</h2>
+                    <button class="clear-basket-btn" id="clearBasketBtn">Clear Basket</button>
+                </div>
+                <div class="basket-content" id="basketContent">
+                    <!-- Basket items will appear here -->
+                </div>
+                <div class="basket-footer" id="basketFooter">
+                    <button class="compare-btn" id="compareBasketBtn">Compare Basket Prices</button>
+                </div>
+            </div>
+
+            <!-- Compare View -->
+            <div id="compareView" class="view">
+                <h2>Price Comparison Results</h2>
+                <div id="compareResults" class="compare-results">
+                    <!-- Comparison results will appear here -->
+                </div>
+            </div>
+
+            <!-- Saved Baskets View -->
+            <div id="historyView" class="view">
+                <h2>Saved Baskets</h2>
+                <div id="savedBasketsList" class="saved-baskets-list">
+                    <!-- Saved baskets will appear here -->
+                </div>
+            </div>
+
+            <!-- Profile View -->
+            <div id="profileView" class="view">
+                <h2>My Profile</h2>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-form">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="profileFullname" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="profileEmail" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="profileLocation" placeholder="Add your location">
+                        </div>
+                        <div class="form-group">
+                            <label>Member Since</label>
+                            <input type="text" id="profileDate" readonly>
+                        </div>
+                        <button class="save-profile-btn" id="saveProfileBtn">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Compare Modal -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content compare-modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Price Comparison Results</h3>
+            <div id="compareModalResults"></div>
+            <button class="modal-btn" id="closeCompareModal">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
