@@ -25,7 +25,6 @@ body {
     min-height: 600px;
 }
 
-/* ========== LEFT BRAND SECTION ========== */
 .brand-section {
     flex: 1;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -86,7 +85,6 @@ body {
     font-size: 18px;
 }
 
-/* ========== RIGHT FORM SECTION ========== */
 .form-section {
     flex: 1;
     padding: 48px;
@@ -117,7 +115,6 @@ body {
     font-size: 14px;
 }
 
-/* Input Groups */
 .input-group {
     margin-bottom: 24px;
 }
@@ -153,7 +150,6 @@ body {
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-/* Password Wrapper */
 .password-wrapper {
     position: relative;
 }
@@ -174,11 +170,6 @@ body {
     font-size: 18px;
 }
 
-.toggle-password:hover {
-    color: #667eea;
-}
-
-/* Error Messages */
 .error-message {
     display: block;
     font-size: 12px;
@@ -187,7 +178,6 @@ body {
     min-height: 20px;
 }
 
-/* Options Row */
 .options-row {
     display: flex;
     justify-content: space-between;
@@ -215,7 +205,6 @@ body {
     border-radius: 4px;
     display: inline-block;
     position: relative;
-    transition: all 0.2s ease;
 }
 
 .checkbox-label input:checked + .checkmark {
@@ -240,15 +229,8 @@ body {
     color: #667eea;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
 }
 
-.forgot-link:hover {
-    color: #5a67d8;
-    text-decoration: underline;
-}
-
-/* Login Button */
 .login-btn {
     width: 100%;
     padding: 14px;
@@ -263,8 +245,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    transition: all 0.3s ease;
     margin-bottom: 24px;
+    transition: all 0.3s ease;
 }
 
 .login-btn:hover {
@@ -272,15 +254,29 @@ body {
     box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.5);
 }
 
-.login-btn i {
-    transition: transform 0.2s ease;
+.admin-link {
+    text-align: center;
+    margin: 16px 0 8px;
 }
 
-.login-btn:hover i {
-    transform: translateX(4px);
+.admin-login-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-/* Divider */
+.admin-login-link:hover {
+    background: #f0f4ff;
+    color: #5a67d8;
+}
+
 .divider {
     text-align: center;
     margin: 24px 0;
@@ -305,7 +301,6 @@ body {
     font-size: 13px;
 }
 
-/* Social Login */
 .social-login {
     display: flex;
     gap: 12px;
@@ -325,42 +320,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all 0.2s ease;
-    font-family: 'Inter', sans-serif;
 }
 
-.social-btn i {
-    font-size: 18px;
-}
-
-.google-btn {
-    color: #ea4335;
-}
-
-.google-btn:hover {
-    background: #fef3f2;
-    border-color: #ea4335;
-}
-
-.facebook-btn {
-    color: #1877f2;
-}
-
-.facebook-btn:hover {
-    background: #eef4ff;
-    border-color: #1877f2;
-}
-
-.apple-btn {
-    color: #000;
-}
-
-.apple-btn:hover {
-    background: #f1f5f9;
-    border-color: #000;
-}
-
-/* Register Link */
 .register-link {
     text-align: center;
     font-size: 14px;
@@ -373,11 +334,6 @@ body {
     font-weight: 600;
 }
 
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-/* Loading Overlay */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -416,75 +372,6 @@ body {
 .loading-overlay p {
     color: white;
     margin-top: 16px;
-    font-size: 14px;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .container {
-        flex-direction: column;
-        max-width: 500px;
-    }
-    
-    .brand-section {
-        padding: 32px;
-        text-align: center;
-    }
-    
-    .brand-section h1 {
-        font-size: 28px;
-    }
-    
-    .features {
-        align-items: center;
-    }
-    
-    .form-section {
-        padding: 32px;
-    }
-}
-
-@media (max-width: 500px) {
-    .social-login {
-        flex-direction: column;
-    }
-    
-    .options-row {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-    }
-}
-/* ========== ADDITIONAL STYLES FOR REGISTRATION PAGE ========== */
-/* Add these styles to the bottom of your existing style.css file */
-
-.password-hint {
-    display: block;
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 6px;
-}
-
-.checkbox-group {
-    margin-bottom: 24px;
-}
-
-.checkbox-group .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #475569;
-}
-
-.checkbox-group .checkbox-label a {
-    color: #667eea;
-    text-decoration: none;
-}
-
-.checkbox-group .checkbox-label a:hover {
-    text-decoration: underline;
 }
 
 .modal {
@@ -515,18 +402,6 @@ body {
     text-align: center;
     max-width: 400px;
     width: 90%;
-    animation: modalSlideIn 0.4s ease;
-}
-
-@keyframes modalSlideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
 }
 
 .modal-icon i {
@@ -544,7 +419,6 @@ body {
 .modal-content p {
     color: #64748b;
     margin-bottom: 24px;
-    line-height: 1.5;
 }
 
 .modal-btn {
@@ -556,44 +430,19 @@ body {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.modal-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.5);
-}
-
-.input-group.success input {
-    border-color: #10b981;
-}
-
-@media (max-width: 900px) {
-    .brand-section h1 {
-        font-size: 24px;
-    }
-    
-    .modal-content {
-        padding: 28px;
-    }
-}
-/* ========== DASHBOARD STYLES ========== */
-/* Add this to the bottom of your existing style.css file */
-
+/* Dashboard Styles */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
     background: #f1f5f9;
-    font-family: 'Inter', sans-serif;
 }
 
-/* Sidebar Styles */
 .sidebar {
     width: 280px;
     background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
     color: white;
-    display: flex;
-    flex-direction: column;
     position: fixed;
     height: 100vh;
     overflow-y: auto;
@@ -609,13 +458,7 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.sidebar-logo i {
-    font-size: 28px;
-    color: #ffd700;
-}
-
 .sidebar-nav {
-    flex: 1;
     padding: 24px 16px;
     display: flex;
     flex-direction: column;
@@ -630,13 +473,8 @@ body {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     border-radius: 12px;
-    transition: all 0.3s ease;
     position: relative;
-}
-
-.nav-item i {
-    width: 24px;
-    font-size: 18px;
+    transition: all 0.3s ease;
 }
 
 .nav-item:hover {
@@ -663,9 +501,11 @@ body {
 .sidebar-footer {
     padding: 24px 16px;
     border-top: 1px solid rgba(255,255,255,0.1);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
-/* Main Content Styles */
 .main-content {
     flex: 1;
     margin-left: 280px;
@@ -686,7 +526,6 @@ body {
 .header-welcome h2 {
     font-size: 24px;
     color: #1e293b;
-    margin-bottom: 4px;
 }
 
 .header-welcome p {
@@ -720,7 +559,6 @@ body {
     color: #64748b;
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -736,11 +574,6 @@ body {
     align-items: center;
     gap: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-4px);
 }
 
 .stat-icon i {
@@ -754,12 +587,6 @@ body {
     color: #1e293b;
 }
 
-.stat-info p {
-    color: #64748b;
-    font-size: 14px;
-}
-
-/* Products Grid */
 .recent-section {
     background: white;
     padding: 24px;
@@ -769,7 +596,6 @@ body {
 
 .recent-section h3 {
     margin-bottom: 20px;
-    color: #1e293b;
 }
 
 .products-grid {
@@ -783,38 +609,17 @@ body {
     padding: 16px;
     border-radius: 16px;
     transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.product-card:hover {
-    background: #f1f5f9;
-    transform: translateY(-2px);
 }
 
 .product-card h4 {
-    font-size: 16px;
-    color: #1e293b;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
-.product-card .product-prices {
-    margin: 12px 0;
-}
-
-.product-card .price-row {
+.price-row {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     padding: 4px 0;
-}
-
-.product-card .supermarket {
-    color: #64748b;
-}
-
-.product-card .price {
-    font-weight: 600;
-    color: #1e293b;
 }
 
 .add-to-basket-btn {
@@ -825,16 +630,9 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-    transition: background 0.3s ease;
+    margin-top: 12px;
 }
 
-.add-to-basket-btn:hover {
-    background: #5a67d8;
-}
-
-/* Tip Card */
 .tip-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 20px 28px;
@@ -850,26 +648,11 @@ body {
     color: #ffd700;
 }
 
-.tip-content h4 {
-    margin-bottom: 8px;
-}
-
-.tip-content p {
-    opacity: 0.9;
-    font-size: 14px;
-}
-
-/* Search View */
 .search-header {
     background: white;
     padding: 24px;
     border-radius: 20px;
     margin-bottom: 24px;
-}
-
-.search-header h2 {
-    margin-bottom: 20px;
-    color: #1e293b;
 }
 
 .search-bar {
@@ -879,10 +662,6 @@ body {
     background: #f1f5f9;
     padding: 8px 16px;
     border-radius: 50px;
-}
-
-.search-bar i {
-    color: #94a3b8;
 }
 
 .search-bar input {
@@ -901,10 +680,8 @@ body {
     border: none;
     border-radius: 40px;
     cursor: pointer;
-    font-weight: 500;
 }
 
-/* Basket View */
 .basket-header {
     display: flex;
     justify-content: space-between;
@@ -912,13 +689,21 @@ body {
     margin-bottom: 24px;
 }
 
-.clear-basket-btn {
+.clear-basket-btn, .save-basket-btn {
     padding: 10px 20px;
-    background: #ef4444;
-    color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.clear-basket-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.save-basket-btn {
+    background: #10b981;
+    color: white;
 }
 
 .basket-item {
@@ -929,45 +714,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.basket-item-info h4 {
-    margin-bottom: 4px;
-}
-
-.basket-item-info p {
-    font-size: 13px;
-    color: #64748b;
-}
-
-.basket-item-quantity {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.basket-item-quantity button {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid #e2e8f0;
-    background: white;
-    cursor: pointer;
-}
-
-.basket-item-price {
-    font-weight: 600;
-    color: #1e293b;
-    min-width: 80px;
-    text-align: right;
-}
-
-.remove-item-btn {
-    background: none;
-    border: none;
-    color: #ef4444;
-    cursor: pointer;
-    font-size: 18px;
 }
 
 .basket-footer {
@@ -986,7 +732,6 @@ body {
     cursor: pointer;
 }
 
-/* Compare Results */
 .compare-results {
     display: flex;
     flex-direction: column;
@@ -1002,32 +747,6 @@ body {
     align-items: center;
 }
 
-.compare-card.winner {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-}
-
-.compare-card.winner .compare-price {
-    color: white;
-}
-
-.compare-supermarket {
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.compare-price {
-    font-size: 24px;
-    font-weight: 700;
-    color: #1e293b;
-}
-
-.compare-savings {
-    font-size: 14px;
-    color: #ffd700;
-}
-
-/* Profile View */
 .profile-card {
     background: white;
     padding: 32px;
@@ -1064,11 +783,6 @@ body {
     font-size: 14px;
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
 .save-profile-btn {
     padding: 12px 28px;
     background: #667eea;
@@ -1078,7 +792,6 @@ body {
     cursor: pointer;
 }
 
-/* View Toggle */
 .view {
     display: none;
 }
@@ -1087,92 +800,7 @@ body {
     display: block;
 }
 
-/* Modal */
-.compare-modal-content {
-    max-width: 500px;
-}
-
-.compare-modal-content .compare-card {
-    margin-bottom: 12px;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .sidebar {
-        width: 80px;
-    }
-    
-    .sidebar-logo span,
-    .nav-item span {
-        display: none;
-    }
-    
-    .badge {
-        display: none;
-    }
-    
-    .main-content {
-        margin-left: 80px;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-    
-    .profile-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-}
-
-@media (max-width: 600px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .main-content {
-        padding: 16px;
-    }
-    
-    .dashboard-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-}
-/* Admin Login Link */
-.admin-link {
-    text-align: center;
-    margin: 16px 0 8px 0;
-}
-
-.admin-login-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #667eea;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.admin-login-link:hover {
-    background: #f0f4ff;
-    color: #5a67d8;
-}
-
-.admin-login-link i {
-    font-size: 14px;
-}
-/* Admin Specific Styles */
+/* Admin specific */
 .add-product-btn, .bulk-update-btn {
     padding: 10px 20px;
     background: #10b981;
@@ -1180,11 +808,6 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
-}
-
-.products-list, .prices-list, .users-list {
-    margin-top: 20px;
 }
 
 .product-row, .price-row, .user-row {
@@ -1197,7 +820,7 @@ body {
     align-items: center;
 }
 
-.product-actions button, .price-actions button, .user-actions button {
+.edit-btn, .delete-btn, .disable-btn {
     padding: 6px 12px;
     margin-left: 8px;
     border: none;
@@ -1213,11 +836,6 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 16px;
-}
-
-.form-row .form-group {
-    flex: 1;
-    margin-bottom: 0;
 }
 
 .modal-buttons {
@@ -1245,23 +863,25 @@ body {
     border-radius: 16px;
 }
 
-.report-card h4 {
-    margin-bottom: 16px;
-    color: #1e293b;
+/* Responsive */
+@media (max-width: 900px) {
+    .sidebar { width: 80px; }
+    .sidebar-logo span, .nav-item span { display: none; }
+    .badge { display: none; }
+    .main-content { margin-left: 80px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .profile-card { flex-direction: column; align-items: center; text-align: center; }
+    .container { flex-direction: column; }
+    .brand-section { text-align: center; }
 }
 
-.activity-list {
-    margin-top: 16px;
-}
-
-.activity-item {
-    padding: 12px;
-    border-bottom: 1px solid #e2e8f0;
-    font-size: 14px;
-}
-
-.activity-time {
+.password-hint {
+    display: block;
+    font-size: 11px;
     color: #94a3b8;
-    font-size: 12px;
-    margin-left: 12px;
+    margin-top: 6px;
+}
+
+.checkbox-group {
+    margin-bottom: 24px;
 }

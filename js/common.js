@@ -1,12 +1,9 @@
-// ========== COMMON FUNCTIONS & DATA ==========
-// This file is loaded on ALL pages
-
-// Email validation function
+// Common validation function
 function validateEmail(email) {
     return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email);
 }
 
-// Default product data
+// Default products (used if localStorage empty)
 const defaultProducts = [
     { id: 1, name: "White Rice (1kg)", category: "Grains", naivas: 180, carrefour: 165, quickmart: 175 },
     { id: 2, name: "Cooking Oil (1L)", category: "Cooking", naivas: 320, carrefour: 299, quickmart: 310 },
@@ -20,7 +17,6 @@ const defaultProducts = [
     { id: 10, name: "Salt (500g)", category: "Pantry", naivas: 25, carrefour: 20, quickmart: 22 }
 ];
 
-// Initialize products in localStorage if not exists
 if (!localStorage.getItem('products')) {
     localStorage.setItem('products', JSON.stringify(defaultProducts));
 }

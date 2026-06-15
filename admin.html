@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-logo"><i class="fas fa-shopping-basket"></i><span>ShopCompare Admin</span></div>
             <nav class="sidebar-nav">
@@ -23,14 +22,12 @@
             <div class="sidebar-footer"><a href="#" class="nav-item" id="adminLogoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <header class="dashboard-header">
                 <div class="header-welcome"><h2 id="adminWelcomeMessage">Admin Dashboard</h2><p>Manage products, prices, and users</p></div>
                 <div class="header-user"><div class="user-avatar"><i class="fas fa-user-shield"></i></div><div class="user-info"><span id="adminName">Administrator</span><small id="adminEmail">admin@shopcompare.com</small></div></div>
             </header>
 
-            <!-- Overview View -->
             <div id="overviewView" class="view active">
                 <div class="stats-grid">
                     <div class="stat-card"><div class="stat-icon"><i class="fas fa-store"></i></div><div class="stat-info"><h3>3</h3><p>Supermarkets</p></div></div>
@@ -41,25 +38,21 @@
                 <div class="recent-section"><h3>Recent Activity</h3><div id="recentActivity" class="activity-list"><p>No recent activity</p></div></div>
             </div>
 
-            <!-- Products View -->
             <div id="productsView" class="view">
                 <div class="basket-header"><h2>Manage Products</h2><button class="add-product-btn" id="addProductBtn">+ Add New Product</button></div>
                 <div id="productsList" class="products-list"></div>
             </div>
 
-            <!-- Prices View -->
             <div id="pricesView" class="view">
                 <div class="basket-header"><h2>Manage Prices</h2><button class="bulk-update-btn" id="bulkUpdateBtn">Bulk Update</button></div>
                 <div id="pricesList" class="prices-list"></div>
             </div>
 
-            <!-- Users View -->
             <div id="usersView" class="view">
                 <h2>Manage Users</h2>
                 <div id="usersList" class="users-list"></div>
             </div>
 
-            <!-- Reports View -->
             <div id="reportsView" class="view">
                 <h2>Reports</h2>
                 <div class="report-cards">
@@ -70,7 +63,6 @@
         </main>
     </div>
 
-    <!-- Add/Edit Product Modal -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <h3 id="productModalTitle">Add Product</h3>
@@ -85,7 +77,6 @@
         </div>
     </div>
 
-    <!-- Bulk Update Modal -->
     <div class="modal" id="bulkModal">
         <div class="modal-content">
             <h3>Bulk Price Update</h3>
@@ -96,6 +87,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>
