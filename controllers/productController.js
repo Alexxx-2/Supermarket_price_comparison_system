@@ -1,12 +1,16 @@
 const Product = require("../models/Product");
 const format = require("../utils/response");
 
-// ADD PRODUCT (ADMIN)
 exports.create = (req, res) => {
+
+    console.log("PRODUCT ROUTE HIT");
+    console.log(req.body);
 
     const { name, category, description } = req.body;
 
-    const image = req.file ? req.file.filename : null;
+    const image = req.file
+        ? req.file.filename
+        : null;
 
     if (!name || !category) {
         return res.status(400).json(
@@ -15,14 +19,23 @@ exports.create = (req, res) => {
     }
 
     Product.create(
-        { name, category, description, image },
-        (err) => {
+        {
+            name,
+            category,
+            description,
+            image
+        },
+        (err, result) => {
 
             if (err) {
+                console.log("PRODUCT ERROR:", err);
+
                 return res.status(500).json(
-                    format(false, "Database error")
+                    format(false, err.message)
                 );
             }
+
+            console.log("PRODUCT CREATED:", result);
 
             res.status(201).json(
                 format(true, "Product created")
@@ -31,22 +44,31 @@ exports.create = (req, res) => {
     );
 };
 
-// UPDATE PRODUCT
 exports.update = (req, res) => {
 
     const id = req.params.id;
+
     const { name, category, description } = req.body;
 
-    const image = req.file ? req.file.filename : null;
+    const image = req.file
+        ? req.file.filename
+        : null;
 
     Product.update(
         id,
-        { name, category, description, image },
+        {
+            name,
+            category,
+            description,
+            image
+        },
         (err) => {
 
             if (err) {
+                console.log("UPDATE ERROR:", err);
+
                 return res.status(500).json(
-                    format(false, "Update failed")
+                    format(false, err.message)
                 );
             }
 
@@ -57,18 +79,24 @@ exports.update = (req, res) => {
     );
 };
 
-// GET ALL
 exports.getAll = (req, res) => {
+
     Product.getAll((err, result) => {
 
         if (err) {
+            console.log(err);
+
             return res.status(500).json(
-                format(false, "Error fetching products")
+                format(false, err.message)
             );
         }
 
         res.json(
-            format(true, "Products retrieved", result)
+            format(
+                true,
+                "Products retrieved",
+                result
+            )
         );
     });
 };
