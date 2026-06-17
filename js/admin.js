@@ -82,7 +82,7 @@ if (document.getElementById('adminWelcomeMessage')) {
         users.forEach((u, idx) => {
             const div = document.createElement('div');
             div.className = 'user-row';
-            div.innerHTML = `<div><strong>${u.fullname}</strong><br>${u.email}<br>Joined: ${new Date(u.registeredAt).toLocaleDateString()}<br>Location: ${u.location||'Not set'}</div>
+            div.innerHTML = `<div><strong>${u.name}</strong><br>${u.email}<br>Joined: ${new Date(u.registeredAt).toLocaleDateString()}<br>Location: ${u.location||'Not set'}</div>
                 <div><button class="disable-user" data-idx="${idx}">Disable</button><button class="del-user" data-idx="${idx}">Delete</button></div>`;
             container.appendChild(div);
         });

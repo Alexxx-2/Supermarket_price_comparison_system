@@ -7,10 +7,10 @@ if (document.querySelector('.dashboard-container') && !document.getElementById('
         const stored = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
         if (!stored) { window.location.href = 'index.html'; return; }
         currentUser = JSON.parse(stored);
-        document.getElementById('welcomeMessage').innerText = `Welcome back, ${currentUser.fullname.split(' ')[0]}!`;
-        document.getElementById('userName').innerText = currentUser.fullname;
+        document.getElementById('welcomeMessage').innerText = `Welcome back, ${currentUser.name.split(' ')[0]}!`;
+        document.getElementById('name').innerText = currentUser.name;
         document.getElementById('userEmail').innerText = currentUser.email;
-        document.getElementById('profileFullname').value = currentUser.fullname;
+        document.getElementById('profilename').value = currentUser.name;
         document.getElementById('profileEmail').value = currentUser.email;
         document.getElementById('profileLocation').value = currentUser.location || '';
         document.getElementById('profileDate').value = new Date(currentUser.registeredAt).toLocaleDateString();

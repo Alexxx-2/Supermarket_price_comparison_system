@@ -1,9 +1,10 @@
-// Common validation function
+// ========== COMMON FUNCTIONS ==========
+
 function validateEmail(email) {
     return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email);
 }
 
-// Default products (used if localStorage empty)
+// Default products
 const defaultProducts = [
     { id: 1, name: "White Rice (1kg)", category: "Grains", naivas: 180, carrefour: 165, quickmart: 175 },
     { id: 2, name: "Cooking Oil (1L)", category: "Cooking", naivas: 320, carrefour: 299, quickmart: 310 },

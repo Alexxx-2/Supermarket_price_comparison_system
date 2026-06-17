@@ -1,9 +1,9 @@
 <?php
 // api/add_product.php - Add new product (Admin only)
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 // Check admin authentication (simple check)
 if (!isset($_SESSION['user_id']) || $_SESSION['user_email'] !== 'admin@shopcompare.com') {

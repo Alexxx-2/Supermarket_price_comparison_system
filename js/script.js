@@ -174,7 +174,7 @@ if (document.getElementById('loginForm')) {
 if (document.getElementById('registerForm')) {
     
     const registerForm = document.getElementById('registerForm');
-    const fullnameInput = document.getElementById('fullname');
+    const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirmPassword');
@@ -209,15 +209,15 @@ if (document.getElementById('registerForm')) {
     function validateRegisterForm() {
         let isValid = true;
         
-        if (!fullnameInput.value.trim()) {
-            showError('fullname', 'Full name is required');
+        if (!nameInput.value.trim()) {
+            showError('name', 'Full name is required');
             isValid = false;
-        } else if (fullnameInput.value.trim().length < 3) {
-            showError('fullname', 'Name must be at least 3 characters');
+        } else if (nameInput.value.trim().length < 3) {
+            showError('name', 'Name must be at least 3 characters');
             isValid = false;
         } else {
-            clearError('fullname');
-            showSuccess('fullname');
+            clearError('name');
+            showSuccess('name');
         }
         
         if (!emailInput.value.trim()) {
@@ -291,7 +291,7 @@ if (document.getElementById('registerForm')) {
         if (!validateRegisterForm()) return;
         
         const userData = {
-            fullname: fullnameInput.value.trim(),
+            name: nameInput.value.trim(),
             email: emailInput.value.trim(),
             password: passwordInput.value,
             location: locationInput.value.trim() || '',
@@ -348,14 +348,14 @@ if (document.getElementById('registerForm')) {
         });
     }
     
-    if (fullnameInput) {
-        fullnameInput.addEventListener('input', function() {
-            if (fullnameInput.value.trim()) {
-                if (fullnameInput.value.trim().length < 3) {
-                    showError('fullname', 'Name must be at least 3 characters');
+    if (nameInput) {
+        nameInput.addEventListener('input', function() {
+            if (nameInput.value.trim()) {
+                if (nameInput.value.trim().length < 3) {
+                    showError('name', 'Name must be at least 3 characters');
                 } else {
-                    clearError('fullname');
-                    showSuccess('fullname');
+                    clearError('name');
+                    showSuccess('name');
                 }
             }
         });
@@ -466,17 +466,17 @@ if (document.querySelector('.dashboard-container')) {
         if (storedUser) {
             currentUser = JSON.parse(storedUser);
             const welcomeMessage = document.getElementById('welcomeMessage');
-            const userName = document.getElementById('userName');
+            const name = document.getElementById('name');
             const userEmail = document.getElementById('userEmail');
-            const profileFullname = document.getElementById('profileFullname');
+            const profilename = document.getElementById('profilename');
             const profileEmail = document.getElementById('profileEmail');
             const profileLocation = document.getElementById('profileLocation');
             const profileDate = document.getElementById('profileDate');
             
-            if (welcomeMessage) welcomeMessage.innerHTML = 'Welcome back, ' + currentUser.fullname.split(' ')[0] + '!';
-            if (userName) userName.innerHTML = currentUser.fullname;
+            if (welcomeMessage) welcomeMessage.innerHTML = 'Welcome back, ' + currentUser.name.split(' ')[0] + '!';
+            if (name) name.innerHTML = currentUser.name;
             if (userEmail) userEmail.innerHTML = currentUser.email;
-            if (profileFullname) profileFullname.value = currentUser.fullname;
+            if (profilename) profilename.value = currentUser.name;
             if (profileEmail) profileEmail.value = currentUser.email;
             if (profileLocation) profileLocation.value = currentUser.location || '';
             if (profileDate) profileDate.value = new Date(currentUser.registeredAt).toLocaleDateString();
@@ -996,7 +996,7 @@ if (document.getElementById('loginForm')) {
 // ========== REGISTRATION PAGE ==========
 if (document.getElementById('registerForm')) {
     const form = document.getElementById('registerForm');
-    const fullnameInput = document.getElementById('fullname');
+    const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('regEmail');
     const passwordInput = document.getElementById('regPassword');
     const confirmInput = document.getElementById('confirmPassword');
@@ -1021,7 +1021,7 @@ if (document.getElementById('registerForm')) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        if (!fullnameInput.value.trim()) { alert('Full name is required'); return; }
+        if (!nameInput.value.trim()) { alert('Full name is required'); return; }
         if (!emailInput.value.trim()) { alert('Email is required'); return; }
         if (!validateEmail(emailInput.value.trim())) { alert('Invalid email'); return; }
         if (!passwordInput.value) { alert('Password is required'); return; }
@@ -1030,7 +1030,7 @@ if (document.getElementById('registerForm')) {
         if (!termsCheckbox.checked) { alert('You must agree to the Terms of Service'); return; }
 
         const userData = {
-            fullname: fullnameInput.value.trim(),
+            name: nameInput.value.trim(),
             email: emailInput.value.trim(),
             password: passwordInput.value,
             location: document.getElementById('location')?.value || '',
@@ -1071,10 +1071,10 @@ if (document.querySelector('.dashboard-container') && !document.getElementById('
         const storedUser = localStorage.getItem('currentUser');
         if (storedUser) {
             currentUser = JSON.parse(storedUser);
-            document.getElementById('welcomeMessage').innerHTML = 'Welcome back, ' + currentUser.fullname.split(' ')[0] + '!';
-            document.getElementById('userName').innerHTML = currentUser.fullname;
+            document.getElementById('welcomeMessage').innerHTML = 'Welcome back, ' + currentUser.name.split(' ')[0] + '!';
+            document.getElementById('name').innerHTML = currentUser.name;
             document.getElementById('userEmail').innerHTML = currentUser.email;
-            document.getElementById('profileFullname').value = currentUser.fullname;
+            document.getElementById('profilename').value = currentUser.name;
             document.getElementById('profileEmail').value = currentUser.email;
             document.getElementById('profileLocation').value = currentUser.location || '';
             document.getElementById('profileDate').value = new Date(currentUser.registeredAt).toLocaleDateString();

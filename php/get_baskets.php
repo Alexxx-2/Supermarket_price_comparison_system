@@ -1,9 +1,9 @@
 <?php
 // api/get_baskets.php - Get all saved baskets for a user
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 $user_id = isAuthenticated();
 if (!$user_id) {

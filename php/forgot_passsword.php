@@ -1,9 +1,9 @@
 <?php
 // api/forgot_password.php - Request password reset
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendResponse(['error' => 'Method not allowed'], 405);
@@ -24,7 +24,7 @@ if (!$email || !validateEmail($email)) {
 $conn = getDBConnection();
 
 // Check if user exists
-$sql = "SELECT id, fullname, email FROM users WHERE email = ?";
+$sql = "SELECT id, name, email FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();

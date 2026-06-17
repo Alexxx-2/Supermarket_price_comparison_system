@@ -1,9 +1,9 @@
 <?php
 // api/get_users.php - Get all registered users (Admin only)
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 // Check admin authentication
 if (!isset($_SESSION['user_id']) || $_SESSION['user_email'] !== 'admin@shopcompare.com') {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 $conn = getDBConnection();
 
-$sql = "SELECT id, fullname, email, location, registered_at FROM users WHERE email != 'admin@shopcompare.com' ORDER BY registered_at DESC";
+$sql = "SELECT id, name, email, location, registered_at FROM users WHERE email != 'admin@shopcompare.com' ORDER BY registered_at DESC";
 $result = $conn->query($sql);
 
 $users = [];

@@ -1,9 +1,9 @@
 <?php
 // api/save_basket.php - Save a shopping basket
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 // Check authentication
 $user_id = isAuthenticated();

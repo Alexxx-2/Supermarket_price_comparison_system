@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | ShopCompare</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -33,14 +33,12 @@
                 <form id="registerForm">
                     <div class="input-group">
                         <label><i class="fas fa-user"></i> Full Name</label>
-                        <input type="text" id="fullname" placeholder="Enter your full name" required>
-                        <span class="error-message" id="fullnameError"></span>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="input-group">
                         <label><i class="fas fa-envelope"></i> Email Address</label>
                         <input type="email" id="regEmail" placeholder="Enter your email address" required>
-                        <span class="error-message" id="regEmailError"></span>
                     </div>
 
                     <div class="input-group">
@@ -49,7 +47,6 @@
                             <input type="password" id="regPassword" placeholder="Create a password" required>
                             <button type="button" class="toggle-password" id="toggleRegPassword"><i class="fas fa-eye"></i></button>
                         </div>
-                        <span class="error-message" id="regPasswordError"></span>
                         <small class="password-hint">Password must be at least 6 characters</small>
                     </div>
 
@@ -59,7 +56,6 @@
                             <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
                             <button type="button" class="toggle-password" id="toggleConfirmPassword"><i class="fas fa-eye"></i></button>
                         </div>
-                        <span class="error-message" id="confirmPasswordError"></span>
                     </div>
 
                     <div class="input-group">
@@ -73,7 +69,6 @@
                             <span class="checkmark"></span>
                             I agree to the <a href="#" id="termsLink">Terms of Service</a> and <a href="#" id="privacyLink">Privacy Policy</a>
                         </label>
-                        <span class="error-message" id="termsError"></span>
                     </div>
 
                     <button type="submit" class="login-btn">CREATE ACCOUNT <i class="fas fa-arrow-right"></i></button>
@@ -102,7 +97,125 @@
         </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/register.js"></script>
+    <script>
+        console.log("🚀 Register JS loaded");
+
+        function validateEmail(email) {
+            return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            console.log("✅ DOM ready");
+
+            const form = document.getElementById('registerForm');
+            if (!form) {
+                console.error("❌ Form not found");
+                return;
+            }
+            console.log("✅ Form found");
+
+            // Toggle password visibility
+            const togglePwd = document.getElementById('toggleRegPassword');
+            if (togglePwd) {
+                togglePwd.addEventListener('click', function() {
+                    const pwd = document.getElementById('regPassword');
+                    pwd.type = pwd.type === 'password' ? 'text' : 'password';
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            }
+            const toggleConfirm = document.getElementById('toggleConfirmPassword');
+            if (toggleConfirm) {
+                toggleConfirm.addEventListener('click', function() {
+                    const pwd = document.getElementById('confirmPassword');
+                    pwd.type = pwd.type === 'password' ? 'text' : 'password';
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Submit handler
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                console.log("✅ Submit captured");
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const password = document.getElementById('regPassword').value;
+                const confirm = document.getElementById('confirmPassword').value;
+                const location = document.getElementById('location').value.trim();
+                const terms = document.getElementById('termsCheckbox').checked;
+
+                // Validation
+                if (name.length < 3) { alert('Name must be at least 3 characters'); return; }
+                if (!validateEmail(email)) { alert('Please enter a valid email'); return; }
+                if (password.length < 6) { alert('Password must be at least 6 characters'); return; }
+                if (password !== confirm) { alert('Passwords do not match'); return; }
+                if (!terms) { alert('You must agree to the Terms of Service'); return; }
+
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                if (loadingOverlay) loadingOverlay.classList.add('active');
+
+                // ============================================================
+                // 🔥 CHANGE THIS URL TO MATCH YOUR EXACT FOLDER NAME
+                // ============================================================
+                const url = 'http://localhost/Supermarket_price_comparison_system/php/register.php';
+
+                console.log("📡 Fetching:", url);
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            password: password,
+                            location: location
+                        })
+                    });
+
+                    console.log("📡 Response status:", response.status);
+
+                    const data = await response.json();
+                    console.log("📡 Server response:", data);
+
+                    if (loadingOverlay) loadingOverlay.classList.remove('active');
+
+                    if (data.success) {
+                        const successModal = document.getElementById('successModal');
+                        if (successModal) successModal.classList.add('active');
+                        form.reset();
+                    } else {
+                        alert(data.error || 'Registration failed');
+                    }
+                } catch (error) {
+                    console.error('❌ Fetch error:', error);
+                    if (loadingOverlay) loadingOverlay.classList.remove('active');
+                    alert('Could not connect to the server. Make sure XAMPP is running.');
+                }
+            });
+
+            // Modal button
+            const modalBtn = document.getElementById('modalLoginBtn');
+            if (modalBtn) {
+                modalBtn.addEventListener('click', function() {
+                    window.location.href = 'index.html';
+                });
+            }
+
+            // Terms links
+            document.getElementById('termsLink')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Terms of Service (demo)');
+            });
+            document.getElementById('privacyLink')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Privacy Policy (demo)');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php
 // api/reset_password.php - Reset password with code
 
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../includes/db.php';
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendResponse(['error' => 'Method not allowed'], 405);

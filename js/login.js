@@ -1,119 +1,101 @@
-if (document.getElementById('loginForm')) {
+// ========== LOGIN JS ==========
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    console.log("✅ LOGIN JS LOADED");
+
     const form = document.getElementById('loginForm');
-    const emailInput = document.getElementById('loginEmail');
-    const passwordInput = document.getElementById('loginPassword');
-    const toggleBtn = document.getElementById('toggleLoginPassword');
-    const rememberMe = document.getElementById('rememberMe');
-    const forgotLink = document.getElementById('forgotPasswordLink');
+    if (!form) {
+        console.error("❌ Login form not found");
+        return;
+    }
+    console.log("✅ Login form found");
+
+    // ========== REGISTER LINK ==========
     const registerLink = document.getElementById('registerLink');
-    const adminLink = document.getElementById('adminLoginLink');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-
-    function showError(field, msg) {
-        const errSpan = document.getElementById(field + 'Error');
-        if (errSpan) errSpan.innerText = msg;
-        const inp = document.getElementById(field);
-        if (inp) inp.style.borderColor = '#ef4444';
-    }
-    function clearError(field) {
-        const errSpan = document.getElementById(field + 'Error');
-        if (errSpan) errSpan.innerText = '';
-        const inp = document.getElementById(field);
-        if (inp) inp.style.borderColor = '#e2e8f0';
+    if (registerLink) {
+        registerLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log("✅ Register link clicked - redirecting");
+            window.location.href = 'register.html';
+        });
+    } else {
+        console.error("❌ registerLink not found! Check id='registerLink'");
     }
 
-    toggleBtn?.addEventListener('click', () => {
-        const type = passwordInput.type === 'password' ? 'text' : 'password';
-        passwordInput.type = type;
-        toggleBtn.querySelector('i').classList.toggle('fa-eye-slash');
-    });
-
-    emailInput.addEventListener('input', () => {
-        const email = emailInput.value.trim();
-        if (email && !validateEmail(email)) showError('loginEmail', 'Invalid email');
-        else clearError('loginEmail');
-    });
-    passwordInput.addEventListener('input', () => {
-        if (passwordInput.value && passwordInput.value.length < 6) showError('loginPassword', 'Min 6 chars');
-        else clearError('loginPassword');
-    });
-
-    forgotLink?.addEventListener('click', (e) => {
+    // ========== LOGIN FORM SUBMIT ==========
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        window.location.href = 'forgot-password.html';
-    });
-    registerLink?.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'register.html';
-    });
-    adminLink?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const email = prompt('Admin Email:', 'admin@shopcompare.com');
-        const pass = prompt('Admin Password:');
-        if (email === 'admin@shopcompare.com' && pass === 'admin123') {
-            localStorage.setItem('adminLoggedIn', 'true');
-            window.location.href = 'admin.html';
-        } else alert('Invalid admin credentials');
-    });
+        console.log("✅ Login submit triggered");
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-        clearError('loginEmail');
-        clearError('loginPassword');
-        let ok = true;
-        if (!email) { showError('loginEmail', 'Email required'); ok = false; }
-        else if (!validateEmail(email)) { showError('loginEmail', 'Invalid email'); ok = false; }
-        if (!password) { showError('loginPassword', 'Password required'); ok = false; }
-        else if (password.length < 6) { showError('loginPassword', 'Min 6 chars'); ok = false; }
-        if (!ok) return;
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
 
-        loadingOverlay.classList.add('active');
-        setTimeout(() => {
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-            if (user) {
-                if (rememberMe.checked) localStorage.setItem('currentUser', JSON.stringify(user));
-                else sessionStorage.setItem('currentUser', JSON.stringify(user));
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email');
+            return;
+        }
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            return;
+        }
+
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) loadingOverlay.classList.add('active');
+
+        try {
+            const response = await fetch('http://localhost/Supermarket_price_comparison_system/php/login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+            console.log("Server response:", data);
+
+            if (loadingOverlay) loadingOverlay.classList.remove('active');
+
+            if (data.success) {
+                if (document.getElementById('rememberMe')?.checked) {
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                } else {
+                    sessionStorage.setItem('currentUser', JSON.stringify(data.user));
+                }
+                alert('Login successful!');
                 window.location.href = 'dashboard.html';
             } else {
-                alert('Invalid email or password');
-                loadingOverlay.classList.remove('active');
+                alert(data.error || 'Login failed');
             }
-        }, 800);
+        } catch (error) {
+            console.error('Login error:', error);
+            if (loadingOverlay) loadingOverlay.classList.remove('active');
+            alert('Could not connect to the server. Make sure XAMPP is running.');
+        }
     });
 
-    const remembered = localStorage.getItem('currentUser');
-    if (remembered) {
-        try {
-            const u = JSON.parse(remembered);
-            emailInput.value = u.email;
-            rememberMe.checked = true;
-        } catch(e) {}
+    // ========== OTHER LINKS ==========
+    const forgotLink = document.getElementById('forgotPasswordLink');
+    if (forgotLink) {
+        forgotLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Forgot password feature coming soon!');
+        });
     }
 
-    // Social login demo
-    async function socialLogin(provider) {
-        loadingOverlay.classList.add('active');
-        await new Promise(r => setTimeout(r, 1000));
-        let fakeEmail, fullname;
-        if (provider === 'google') { fakeEmail = `user_${Math.floor(Math.random()*10000)}@gmail.com`; fullname = 'Google User'; }
-        else if (provider === 'facebook') { fakeEmail = `fb_${Math.floor(Math.random()*10000)}@facebook.com`; fullname = 'Facebook User'; }
-        else { fakeEmail = `appleid_${Math.floor(Math.random()*10000)}@privaterelay.appleid.com`; fullname = 'Apple User'; }
-        let users = JSON.parse(localStorage.getItem('users') || '[]');
-        let user = users.find(u => u.email === fakeEmail);
-        if (!user) {
-            user = { fullname, email: fakeEmail, password: '', location: '', registeredAt: new Date().toISOString() };
-            users.push(user);
-            localStorage.setItem('users', JSON.stringify(users));
-        }
-        if (rememberMe.checked) localStorage.setItem('currentUser', JSON.stringify(user));
-        else sessionStorage.setItem('currentUser', JSON.stringify(user));
-        loadingOverlay.classList.remove('active');
-        window.location.href = 'dashboard.html';
+    const adminLink = document.getElementById('adminLoginLink');
+    if (adminLink) {
+        adminLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const adminEmail = prompt('Enter Admin Email:', 'admin@shopcompare.com');
+            const adminPassword = prompt('Enter Admin Password:');
+            if (adminEmail === 'admin@shopcompare.com' && adminPassword === 'admin123') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                alert('Admin login successful!');
+                window.location.href = 'admin.html';
+            } else {
+                alert('Invalid admin credentials.');
+            }
+        });
     }
-    document.querySelector('.google-btn')?.addEventListener('click', () => socialLogin('google'));
-    document.querySelector('.facebook-btn')?.addEventListener('click', () => socialLogin('facebook'));
-    document.querySelector('.apple-btn')?.addEventListener('click', () => socialLogin('apple'));
-}
+
+});
